@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.insight.transform";
+option java_outer_classname = "StarshipProto";
+option objc_class_prefix = "STR";
+
+package starship;
+import "google/protobuf/empty.proto";
+
+// The greeting service definition.
+service AllStarshipInfo {
+  // Get All starship Info
+  rpc GetAllStarshipInfo (google.protobuf.Empty) returns (stream AllStarshipData) {}
+
+  rpc GetStarshipInfoForId(StarshipID) returns (AllStarshipData){}
+}
+
+message StarshipID{
+  int32 id = 1;
+}
+
+
+// The response message containing the greetings
+message AllStarshipData {
+  int32 id = 1;
+  string name = 2;
+  int32 maxSpeed = 3;
+  float length = 4;
+  repeated films allFilms = 5;
+}
+
+message films{
+  int32 id = 1;
+  string title = 2;
+  repeated producer allProducers = 3;
+}
+
+message producer{
+  int32 id = 1;
+  string name = 2;
+
+}
