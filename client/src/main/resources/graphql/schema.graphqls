@@ -1,0 +1,53 @@
+type AllStarships{
+    id: ID!
+    name: String!
+    maxSpeed: Int!
+    length: Float!
+    films: [Films!]!
+}
+
+type AllFilms{
+    id: ID!
+    title: String!
+    producers: [Producers!]!
+    starships: [Starships!]!
+}
+
+type Starships{
+    id: ID!
+    name: String!
+    maxSpeed: Int!
+    length: Float!
+}
+
+
+
+type Films{
+    id: ID!
+    title: String!
+    producers: [Producers!]!
+}
+
+type Producers{
+    id: ID!
+    name: String!
+}
+
+input StarshipInput{
+    id: ID!
+    name: String!
+    maxSpeed: Int!
+    length: Float!
+}
+
+type Query{
+    allStarships: [AllStarships]!
+    starshipById(starshipId: ID!): AllStarships
+    filmsById(filmId: ID!): AllFilms
+    allFilms: [AllFilms]!
+}
+
+type Mutation{
+    createStarship(id: ID!, name: String!, maxSpeed: Int!, length: Float!): [AllStarships]!
+    createStarshipPojo(starship: StarshipInput!): [AllStarships]!
+}
